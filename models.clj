@@ -7,3 +7,9 @@
   (and (sequential? token)
        ;;checking its :type here with just the first digit
        (= (first token) :number)))
+
+(defn operator?
+  "Returns true if token is an operator"
+  [token]
+  (and (sequential? token)
+       (= (first token) :operator)))
