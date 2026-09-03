@@ -13,3 +13,10 @@
   [token]
   (and (sequential? token)
        (= (first token) :operator)))
+
+(def precedence
+  {:+ 1
+   :- 1
+   :* 2
+   :/ 2
+   :^ 3})
