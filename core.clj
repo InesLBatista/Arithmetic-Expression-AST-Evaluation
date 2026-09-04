@@ -1,13 +1,19 @@
 (ns core
-  (:require [lexer :as lexer]))
+  (:require [lexer :as lexer]
+             [parser :as parser]
+             [evaluator :as evaluator]))
 
 (defn evaluate
-  "Evaluates an arithmetic expression. Just tokenizes and shows tokens for now"
+  "Evaluates an arithmetic expression. Lexer + Parser + Evaluator."
   [expression]
   (println "Input:" expression)
-  (let [tokens (lexer/tokenize expression)]
-    (println "Tokens:"  tokens)
-    tokens))
+   (let [tokens (lexer/tokenize expression)
+         _ (println "Tokens:" tokens)
+         rpn (parser/parse tokens)
+         _ (println "RPN:" rpn)
+         result (evaluator/evaluate rpn)]
+     (println "Result:" result)
+     result))
 
 (defn -main
   "Entry point from command line"
