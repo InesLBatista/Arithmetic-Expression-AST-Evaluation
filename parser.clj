@@ -16,3 +16,11 @@
   [token]
   (and (models/operator? token)
        (> (operator-precedence (second token)) 0)))
+
+
+(defn should-pop-operator?
+  [top-operator current-operator]
+  (let [top-prec (operator-precedence top-operator)
+        current-prec (operator-precedence current-operator)]
+    (and (not= top-operator \()
+               (<= current-prec top-prec))))
